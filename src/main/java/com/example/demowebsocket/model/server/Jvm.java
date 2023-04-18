@@ -71,7 +71,7 @@ public class Jvm {
         return home;
     }
 
-    public void setHome(){
+    public void setHome(String home){
         this.home = home;
     }
 
