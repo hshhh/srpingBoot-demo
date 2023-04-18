@@ -38,6 +38,15 @@ public class Server {
     //磁盘相关信息
     private List<Sysfile> sysFiles = new LinkedList<Sysfile>();
 
+
+
+    public Sys getSys(){
+        return this.sys;
+    }
+    public void  setSys(Sys sys){
+        this.sys = sys;
+    }
+
     public Cpu getCpu(){
         return cpu;
     }
