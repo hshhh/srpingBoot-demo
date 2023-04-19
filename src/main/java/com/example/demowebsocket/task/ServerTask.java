@@ -25,14 +25,14 @@ public class ServerTask {
 
     @Scheduled(cron = "0/2 * * * * ?")
     public void websocket() throws Exception{
-        log.info("消息推送开始执行：{}", DateUtil.formatDateTime(new Date()));
+        //log.info("消息推送开始执行：{}", DateUtil.formatDateTime(new Date()));
         Server server = new Server();
         server.copyTo();
         ServerVO sv = ServerUtil.wrapServerVO(server);
         Dict dict = ServerUtil.wrapServerDict(sv);
-        log.info("推送的消息是"+JSONUtil.toJsonStr(dict));
+        //log.info("推送的消息是"+JSONUtil.toJsonStr(dict));
         wsTemplate.convertAndSend(WebSocketConsts.PUSH_SERVER,JSONUtil.toJsonStr(dict));
-        log.info("消息推送结束执行：{}", DateUtil.formatDateTime(new Date()));
+        //log.info("消息推送结束执行：{}", DateUtil.formatDateTime(new Date()));
     }
 
 

@@ -18,10 +18,10 @@ public class CpuVO {
         CpuVO vo = new CpuVO();
         vo.add(new KV("核心数",cpu.getCpuNum()));
         vo.add(new KV("CPU总的使用率",cpu.getTotal()));
-        vo.add(new KV("CPU系统使用率",cpu.getSys()));
-        vo.add(new KV("CPU用户使用率",cpu.getUsed()));
-        vo.add(new KV("CPU当前等待率",cpu.getWait()));
-        vo.add(new KV("CPU当前空闲率",cpu.getFree()));
+        vo.add(new KV("CPU系统使用率",cpu.getSys()+"%"));
+        vo.add(new KV("CPU用户使用率",cpu.getUsed()+"%"));
+        vo.add(new KV("CPU当前等待率",cpu.getWait()+"%"));
+        vo.add(new KV("CPU当前空闲率",cpu.getFree()+"%"));
         return vo;
     }
 }

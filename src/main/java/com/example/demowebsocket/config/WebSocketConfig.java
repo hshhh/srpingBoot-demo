@@ -26,7 +26,7 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
     public void registerStompEndpoints(StompEndpointRegistry registry) {
         // 注册一个 /notification 端点，前端通过这个端点进行连接
         registry.addEndpoint("/notification")
-                .setAllowedOrigins("*").withSockJS();
+                .withSockJS();
 
     }
 

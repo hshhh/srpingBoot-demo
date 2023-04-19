@@ -1,9 +1,12 @@
 package com.example.demowebsocket.model;
 
+import cn.hutool.core.convert.Convert;
 import cn.hutool.core.util.NumberUtil;
+import cn.hutool.core.util.StrUtil;
 import com.example.demowebsocket.model.server.*;
 import com.example.demowebsocket.util.IpUtil;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import oshi.SystemInfo;
 import oshi.hardware.CentralProcessor;
 import oshi.hardware.GlobalMemory;
@@ -12,6 +15,7 @@ import oshi.software.os.FileSystem;
 import oshi.software.os.OSFileStore;
 import oshi.software.os.OperatingSystem;
 import oshi.hardware.CentralProcessor.TickType;
+import oshi.util.StringUtil;
 import oshi.util.Util;
 
 import java.net.UnknownHostException;
@@ -93,7 +97,7 @@ public class Server {
 
     private void setCpuInfo(CentralProcessor processor){
         long[] prevTicks = processor.getSystemCpuLoadTicks();
-        log.info("preTicks is " + prevTicks.toString());
+        //log.info("preTicks is " + Convert.toStr(prevTicks));
         Util.sleep(OSHI_WAIT_SECOND);
         long[] ticks = processor.getSystemCpuLoadTicks();
         long user = ticks[TickType.USER.getIndex()] - prevTicks[TickType.USER.getIndex()];
