@@ -156,7 +156,7 @@ public class Server {
     private void setSysFiles(OperatingSystem os){
         FileSystem fileSystem = os.getFileSystem();
         OSFileStore[] fsArr =fileSystem.getFileStores();
-        for(var fs:fsArr){
+        for(OSFileStore fs:fsArr){
             long free = fs.getUsableSpace();
             long total = fs.getTotalSpace();
             long used = total - free;

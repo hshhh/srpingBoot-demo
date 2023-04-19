@@ -17,7 +17,7 @@ public class SysFileVO {
 
     public static SysFileVO create(List<Sysfile> sysfiles){
         SysFileVO vo = new SysFileVO();
-        for(var sysFile:sysfiles){
+        for(Sysfile sysFile:sysfiles){
             List<KV> item = Lists.newArrayList();
             item.add(new KV("盘符路径",sysFile.getDirName()));
             item.add(new KV("盘符类型",sysFile.getSysTypeName()));
