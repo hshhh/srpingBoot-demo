@@ -59,7 +59,7 @@
                 </el-col>
             </el-row>
             <el-row>
-                <el-col :span="24">
+                <el-col :span="12">
                     <el-card>
                         <div slot="header">
                             <span>服务器信息</span>
@@ -74,7 +74,7 @@
                 </el-col>
             </el-row>
             <el-row>
-                <el-col :span="24">
+                <el-col :span="12">
                     <el-card>
                         <div slot="header">
                             <span>Java虚拟机信息</span>
@@ -115,9 +115,10 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/element-ui/2.4.11/index.js"></script>
 <script src="https://cdn.bootcss.com/axios/0.19.0-beta.1/axios.min.js"></script>
 <script>
+    //访问链接 http://localhost:8008/demo/server.html
     const wsHost = "http://localhost:8008/demo/notification";
     const wsTopic = "/topic/server";
-
+    const wsTopic2 = "/topic/message";
     const app = new Vue({
         el: '#app',
         data: function () {
