@@ -5,6 +5,23 @@
     <title>服务器信息</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/element-ui/2.4.11/theme-chalk/index.css" rel="stylesheet">
     <style>
+        .el-aside {
+            background-color: #D3DCE6;
+            color: #333;
+            text-align: center;
+            line-height: 200px;
+        }
+        .el-header, .el-footer {
+            background-color: #E9EEF3;
+            color: #333;
+            text-align: center;
+            line-height: 60px;
+        }
+        .el-main {
+            background-color: #E9EEF3;
+            color: #333;
+            text-align: center;
+        }
         .el-row {
             margin-bottom: 20px;
         }
@@ -25,10 +42,27 @@
 <body>
 <div id="app">
     <el-container>
+        <el-aside width="200px">
+
+                <el-form >
+                    <el-form-item label="消息">
+                        <el-input placeholder="a message"></el-input>
+                    </el-form-item>
+                    <el-form-item>
+                        <el-button  type="primary" >发送</el-button>
+                    </el-form-item>
+                </el-form>
+
+        </el-aside>
+    <el-container>
+
+
         <el-header>
             <el-button @click="_initSockJs" type="primary" :disabled="isConnected">手动连接</el-button>
             <el-button @click="_destroySockJs" type="danger" :disabled="!isConnected">断开连接</el-button>
+
         </el-header>
+
         <el-main>
             <el-row :gutter="20">
                 <el-col :span="12">
@@ -107,6 +141,7 @@
             </el-row>
         </el-main>
     </el-container>
+        </el-container>
 </div>
 </body>
 <script src="js/sockjs.min.js"></script>
@@ -153,9 +188,14 @@
                     this.$message('websocket服务器连接成功');
 
                     // 另外再注册一下消息推送
-                    this.stompClient.subscribe(wsTopic, (response) => {
+
+                    let subsId = this.stompClient.subscribe(wsTopic, (response) => {
                         this.server = JSON.parse(response.body);
-                    });
+                        console.log(response)
+                    },{id:1});
+                    console.log("返回给客户端的订阅ID是"+subsId);
+                    console.log(subsId[0]);
+                    console.log(subsId[1]);
                 });
             },
             _destroySockJs() {
