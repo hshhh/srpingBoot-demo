@@ -182,7 +182,7 @@
                 this.socket = new SockJS(wsHost);
                 this.stompClient = Stomp.over(this.socket);
 
-                this.stompClient.connect({}, (frame) => {
+                this.stompClient.connect({"userId":"huangshihao"}, (frame) => {
                     console.log('websocket连接成功:' + frame);
                     this.isConnected = true;
                     this.$message('websocket服务器连接成功');

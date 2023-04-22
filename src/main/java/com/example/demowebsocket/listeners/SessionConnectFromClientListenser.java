@@ -23,6 +23,10 @@ public class SessionConnectFromClientListenser implements ApplicationListener<Se
          // 判断客户端的行为 应为CONNECT
          log.info("【来自浏览器的STOMP连接的命令】"+sha.getCommand()); //CONNECT
          log.info("【来自浏览器的STOMP连接的消息】"+sha.getMessage()); //null
-
+         //可以通过前端传递一个key为userId的请求头
+         String userId = sha.getFirstNativeHeader("userId");
+         String sessionId = sha.getSessionId();
+         log.info("【来自浏览器的STOMP连接】传入的userId是"+userId);
+         log.info("【来自浏览器的STOMP连接】传入的sessionId是"+sessionId);
      }
 }

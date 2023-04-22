@@ -20,6 +20,7 @@ public class SessionSubscribeListener implements ApplicationListener<SessionSubs
          */
         log.info("【来自浏览器的STOMP订阅的命令】"+sha.getCommand());//SUBSCRIBE
         log.info("【来自浏览器的STOMP订阅的消息】"+sha.getMessage());//null
+        log.info("【来自浏览器的STOMP订阅的SessionId】"+sha.getSessionId());
 
     }
 }

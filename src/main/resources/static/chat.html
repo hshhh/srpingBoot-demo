@@ -68,11 +68,12 @@
                 this.socket = new SockJS(wsHost);
                 this.stompClient = Stomp.over(this.socket)
 
-                this.stompClient.connect({},(frame) => {
+                this.stompClient.connect({"userId":"huangshihao"},(frame) => {
                     console.log('websocket连接成功'+frame);
                     //注册消息推送，订阅 ""/topic/message""
                     this.stompClient.subscribe(wsTopic,(response)=>{
                         console.log("收到的回复"+response);
+
                         this.messages.push(response.body);
                     })
 

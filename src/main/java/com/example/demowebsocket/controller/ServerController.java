@@ -40,6 +40,7 @@ public class ServerController {
     @ResponseBody
     public Dict greet(@RequestParam("greeting") String greeting) {
         log.info("greet is " +greeting);
+
         this.wsTemplate.convertAndSend(WebSocketConsts.PUSH_SERVER2, greeting);
         Dict res = Dict.create().set("send_status","success");
         return res;
@@ -47,6 +48,7 @@ public class ServerController {
 
 
     @GetMapping
+    @ResponseBody
     public Dict serverInfo() throws Exception{
         Server server = new Server();
         server.copyTo();
