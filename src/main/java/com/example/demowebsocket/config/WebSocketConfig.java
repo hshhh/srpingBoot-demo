@@ -1,6 +1,8 @@
 package com.example.demowebsocket.config;
 
 
+import com.example.demowebsocket.interceptors.MyChannelInterceptor;
+import com.example.demowebsocket.interceptors.MyHandshakeInterceptor;
 import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.messaging.Message;
@@ -38,6 +40,7 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
         ///notification is the HTTP URL for the endpoint to which a WebSocket (or SockJS) client
         // needs to connect for the WebSocket handshake
         registry.addEndpoint("/notification")
+                .addInterceptors(new MyHandshakeInterceptor()) //设置拦截器
                 .withSockJS();
 
     }
@@ -53,25 +56,16 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
     }
 
 
-
+    /**
+     * 添加 实现ChannelInterceptor的拦截器
+     * @param registration
+     */
     @Override
     public void configureClientInboundChannel(ChannelRegistration registration) {
-        registration.interceptors(new ChannelInterceptor() {
-            @Override
-            public Message<?> preSend(Message<?> message, MessageChannel channel) {
-                StompHeaderAccessor accessor =
-                        MessageHeaderAccessor.getAccessor(message, StompHeaderAccessor.class);
-                if (StompCommand.CONNECT.equals(accessor.getCommand())) {
-                    Object raw = message.getHeaders().get("name");
-                    if(raw instanceof Map){
-                        Object nameObj = ((Map) raw).get("name");
-                    }
-                    //accessor.get
-                    //Authentication user = ... ; // access authentication header(s)
-                    //accessor.setUser(user);
-                }
-                return message;
-            }
-        });
+                    registration.interceptors(new MyChannelInterceptor());
+    }
+    @Override
+    public void configureClientOutboundChannel(ChannelRegistration registration) {
+        registration.interceptors(new MyChannelInterceptor());
     }
 }
