@@ -171,7 +171,7 @@ public class Server {
             sy.setTotal(convertFileSize(total));
             sy.setFree(convertFileSize(free));
             sy.setUsed(convertFileSize(used));
-            sy.setUsage(NumberUtil.mul(NumberUtil.div(used,total,4),100));
+            sy.setUsage(NumberUtil.mul(NumberUtil.div(used,total+1,4),100));
             sysFiles.add(sy);
         }
 
